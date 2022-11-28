@@ -1,34 +1,28 @@
-import ky from 'ky-universal'
+const backend = 'http://127.0.0.1:3042'
 
-export default (ctx) => {
+export default async (ctx) => {
   if (ctx.server) {
-    ctx.state.todoList = ctx.server.db.todoList
+    const data = await fetch(backend + '/items')
+    ctx.state.todoList = await data.json()
   }
 }
 
-export const $fetch = ky.extend({
-  prefixUrl: 'http://localhost:3000'
-})
-
 export const state = () => ({
-  user: {
-    authenticated: false,
-  },
   todoList: null,
 })
 
 export const actions = {
-  authenticate (state) {
-    state.user.authenticated = true
-  },
-  async addTodoItem (state, item) {
-    await $fetch.put('api/todo/items', {
-      json: { item },
+  async addTodoItem (state, title) {
+    const data = await fetch(backend + '/items', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ title })
     })
+    const item = await data.json()
     state.todoList.push(item)
   },
   async removeTodoItem (state, index) {
-    await $fetch.delete('api/todo/items', {
+    await $fetch.delete('items', {
       json: { index },
     })
     state.todoList.splice(index, 1)

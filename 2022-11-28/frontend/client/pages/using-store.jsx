@@ -18,7 +18,7 @@ export default function Index (props) {
       <h2>Todo List — Using Store</h2>
       <ul>{
         snapshot.todoList.map((item, i) => {
-          return <li key={`item-${i}`}>{item}</li>
+          return <li key={`item-${i}`}>{item.title}</li>
         })
       }</ul>
       <div>
