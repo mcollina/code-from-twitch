@@ -1,0 +1,19 @@
+{
+  "name": "2023-03-23",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/swagger": "^8.3.1",
+    "@fastify/swagger-ui": "^1.5.0",
+    "fastify": "^4.15.0",
+    "swagger-themes": "^1.2.28"
+  }
+}
